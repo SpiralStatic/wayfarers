@@ -9,7 +9,7 @@ var routes = require('./config/routes');
 var app = express();
 
 // Connect to the database
-mongoose.connect('mongodb://localhost/<DB>', function() {
+mongoose.connect('mongodb://localhost/wayfarers', function() {
     console.log("Database is now connected");
 });
 

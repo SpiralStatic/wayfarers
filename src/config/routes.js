@@ -1,20 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var postsController = require('../controllers/controller');
+var locationsController = require('../controllers/locations');
 
 router.route('/')
-      .get(postsController.index)
-      .post(postsController.create);
+      .get(locationsController.index)
+      .post(locationsController.create);
 
 router.route('/new')
-      .get(postsController.new);
+      .get(locationsController.new);
 
 router.route('/:id')
-      .get(postsController.show)
-      .put(postsController.update)
-      .delete(postsController.delete);
+      .get(locationsController.show)
+      .put(locationsController.update)
+      .delete(locationsController.delete);
 
 router.route('/:id/edit')
-      .get(postsController.edit);
+      .get(locationsController.edit);
 
 module.exports = router;
