@@ -27,12 +27,5 @@
     "express": "^4.14.1",
     "express-ejs-layouts": "^2.2.0",
     "mongoose": "^4.8.2"
-  },
-  "devDependencies": {
-    "bootstrap-less": "^3.3.8",
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0"
-  }
+    }
 }
