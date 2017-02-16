@@ -5,5 +5,5 @@
 <p><%= location.longitude, location.latitude %></p>
 
 <% location.images.map((image, i) => { %>
-    <img src="<%= image %>" alt="<%= location.name %> Image <%= image + i %>"</img>
+    <img src="<%= image %>" alt="<%= location.name %> Image <%= i %>"</img>
 <% }) %>

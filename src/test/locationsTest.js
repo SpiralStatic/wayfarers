@@ -11,13 +11,13 @@ describe('Location', function() {
     var location = new Location({
         name: "Cornwall",
         date: new Date("2014-09-21"),
-        description: "Great fews days surfing the waves",
+        description: "Great few days surfing the waves",
         longitude: 50.576492,
         latitude: -4.908804,
         images: ["image1", "image2"]
     });
 
-    before(function(done) {
+    beforeEach(function(done) {
         location.save(function(err, newLocation) {
             if (err) return console.log(err);
             location._id = newLocation._id;
@@ -25,19 +25,18 @@ describe('Location', function() {
         });
     });
 
-    after(function(done) {
+    afterEach(function(done) {
         Location.findByIdAndRemove(location._id, function(err) {
             if (err) return console.log(err);
+            done();
         });
-        done();
     });
 
     // locations /GET/:id
     it('Should list a SINGLE location on /<id> GET', function(done) {
-        var request = chai.request(app);
-        request.get('/' + location._id)
+        chai.request(app)
+            .get('/' + location._id)
             .end(function(err, res) {
-                console.log("END GET:id test");
                 res.should.have.status(200);
                 res.should.be.html;
                 res.text.should.match(/Chapter/);
@@ -50,13 +49,13 @@ describe('Location', function() {
 
     // locations /GET
     it('Should list ALL locations on / GET', function(done) {
-        var request = chai.request(app);
-        request.get('/')
+        chai.request(app)
+            .get('/')
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
                 res.text.should.match(/Fables/);
-                res.text.should.match(/Cornwall/);
+                res.text.should.match(/New York/);
                 res.text.should.match(/<img src="image1"/);
                 done();
             });
@@ -108,7 +107,7 @@ describe('Location', function() {
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
-                res.text.should.match(/All locations/);
+                res.text.should.match(/Fables/);
                 request
                     .get('/' + location._id)
                     .end(function(err, res) {
