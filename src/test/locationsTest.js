@@ -47,54 +47,6 @@ describe('Location', function() {
             });
     });
 
-    // locations /GET
-    it('Should list ALL locations on / GET', function(done) {
-        chai.request(app)
-            .get('/')
-            .end(function(err, res) {
-                res.should.have.status(200);
-                res.should.be.html;
-                res.text.should.match(/Fables/);
-                res.text.should.match(/New York/);
-                res.text.should.match(/<img src="image1"/);
-                done();
-            });
-    });
-
-    // locations /POST
-    it('Should add a SINGLE location on / POST', function(done) {
-        var request = chai.request(app);
-        request.post('/')
-            .set('content-type', 'application/x-www-form-urlencoded')
-            .send({
-                _id: 12345,
-                name: "Snowdonia",
-                date: new Date("2015-05-11"),
-                description: "Great weekend hiking",
-                longitude: 53.123158,
-                latitude: -3.993747,
-                images: ["image1", "image2"]
-            })
-            .end(function(err, res) {
-                res.should.have.status(200);
-                res.should.be.html;
-                res.text.should.match(/Fables/);
-                request
-                    .get('/12345')
-                    .end(function(err, res) {
-                        res.should.have.status(200);
-                        res.should.be.html;
-                        res.text.should.match(/Chapter/);
-                        res.text.should.match(/Snowdonia/);
-
-                        Location.findByIdAndRemove(12345, function(err) {
-                            if (err) return console.log(err);
-                            done();
-                        });
-                    });
-            });
-    });
-
     // locations /PUT/:_id
     it('Should update a SINGLE location on /<id> PUT', function(done) {
         var request = chai.request(app);
@@ -120,8 +72,58 @@ describe('Location', function() {
             });
     });
 
+    // locations /GET
+    it('Should list ALL locations on / GET', function(done) {
+        chai.request(app)
+            .get('/')
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.html;
+                res.text.should.match(/Fables/);
+                res.text.should.match(/York/);
+                res.text.should.match(/<img src="image1"/);
+                done();
+            });
+    });
+
+    // locations /POST
+    it('Should add a SINGLE location on / POST', function(done) {
+        var request = chai.request(app);
+        request.post('/')
+            .set('content-type', 'application/x-www-form-urlencoded')
+            .send({
+                name: "Snowdonia",
+                date: new Date("2015-05-11"),
+                description: "Great weekend hiking",
+                longitude: 53.123158,
+                latitude: -3.993747,
+                images: ["image1", "image2"]
+            })
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.html;
+                res.text.should.match(/Fables/);
+                Location.findOne({"name": "Snowdonia"}, function(err, thisLocation) {
+                    request
+                        .get('/' + thisLocation._id)
+                        .end(function(err, res) {
+                            res.should.have.status(200);
+                            res.should.be.html;
+                            res.text.should.match(/Chapter/);
+                            res.text.should.match(/Snowdonia/);
+
+                            Location.findByIdAndRemove(thisLocation.id, function(err) {
+                                if (err) return console.log(err);
+                                done();
+                            });
+                        });
+                });
+
+            });
+    });
+
     // locations /DELETE/:_id
-    it('Should delete a SINGLE location on /<_id> DELETE', function(done) {
+    it('Should delete a SINGLE location on /<id> DELETE', function(done) {
         var request = chai.request(app);
         request.delete('/' + location._id)
             .end(function(err, res) {

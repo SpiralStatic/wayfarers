@@ -1,10 +1,25 @@
 var mongoose = require('mongoose');
 
+function validateBannedWords(value) {
+    var bannedWords = ['fuck', 'shit', 'twat'];
+    // Check for each banned word in the body text
+    var word = null;
+    while (word = bannedWords.pop()) {
+        if (value.toLowerCase().indexOf(word) !== -1) return false;
+    }
+    // None were found, you passed!
+    return true;
+}
+
 // Create a new schema
 var locationSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: validateBannedWords,
+            message: "Please use non-offensive vocabulary"
+        }
     },
     date: {
         type: Date,

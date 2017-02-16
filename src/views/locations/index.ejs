@@ -1,8 +1,7 @@
 <h1>Fables</h1>
 
 <h3>See the stories people around the world people have been making</h3>
-<% console.log(locations) %>
-<% console.log(locations.length) %>
+
 <% for(var i = 0; i < locations.length; i++) { %>
     <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
     <h5><%= locations[i].date %></h5>

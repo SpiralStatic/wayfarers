@@ -2,8 +2,17 @@
 <h5><%= location.name %></h5>
 <h5><%= location.date %></h5>
 <p><%= location.description %></p>
-<p><%= location.longitude, location.latitude %></p>
+<p><%= location.longitude %>, <%= location.latitude %></p>
 
 <% location.images.map((image, i) => { %>
     <img src="<%= image %>" alt="<%= location.name %> Image <%= i %>"</img>
 <% }) %>
+
+<button type="button" class="btn btn-default">
+	<a href="/<%= location.id %>/edit">Rewrite Chapter</a>
+</button>
+
+<form action="/<%= location.id %>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" class="btn btn-default" value="Remove Chapter">
+</form>

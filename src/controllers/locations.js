@@ -63,7 +63,6 @@ function editLocation(req, res) {
 
 function createLocation(req, res) {
     Location.create(req.body, function(err, location) {
-        console.log(location);
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 
