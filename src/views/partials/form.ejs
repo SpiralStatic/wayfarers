@@ -1,17 +1,22 @@
 <form action="/<%= location.id %>" method="post">
-    <% if (location.id !== "") { %>
-        <input type="hidden" name="_method" value="put">
-    <% } %>
 
     <div class="input-group">
         <label for="name">Location:</label>
         <input type="text" class="form-control" name="name" placeholder="Please enter a location" value="<%= location.name %>" required>
     </div>
 
-    <div class="input-group">
-        <label for="date">Date:</label>
-        <input type="date" class="form-control" name="date" value="<%= location.date.toISOString().split('T')[0] %>" min="1888-01-01" max="2017-02-16" required>
-    </div>
+    <% if (location.id !== "") { %>
+        <input type="hidden" name="_method" value="put">
+        <div class="input-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" name="date" value="<%= location.date.toISOString().split('T')[0] %>" min="1888-01-01" max="2017-02-16" required>
+        </div>
+    <% } else { %>
+        <div class="input-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" name="date" min="1888-01-01" max="2017-02-16" required>
+        </div>
+    <% } %>
 
     <div class="input-group">
         <label for="ndescriptioname">Description:</label>
