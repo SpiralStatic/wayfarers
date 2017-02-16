@@ -1,31 +1,25 @@
 var User = require('../models/user');
 
 function indexUserLocations(req, res) {
-    User.findById(req.user._id).populate("locations").exec(function(err, user) {
-        // check for errors and return 500 error and message if found
-        if (err) return res.status(500).send(err);
+    User.findById(req.user.id)
+        .populate('locations')
+        .exec(function(err, user) {
 
-        // data return so now we can render
-        res.render("users/index", {
-            title: "Your Chapters",
-            locations: user.locations
+            // check for errors and return 500 error and message if found
+            if (err) return res.status(500).send(err);
+
+            // data return so now we can render
+            res.render("users/index", {
+                title: "Your Chapters",
+                locations: user.locations
         });
     });
 }
 
 function newUser(req, res) {
-    // Create an empty User
-    var newUser = {
-        id: "",
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: ""
-    };
-
     res.render("users/new", {
         title: "Register",
-        user: newUser
+        user: ""
     });
 }
 
@@ -62,7 +56,7 @@ function updateUser(req, res) {
         if (err) return res.status(500).send(err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect("/");
+        res.redirect("/users");
     });
 }
 

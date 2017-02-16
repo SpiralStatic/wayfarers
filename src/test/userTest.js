@@ -30,10 +30,10 @@ describe('User', function() {
         });
     });
 
-    // users /PUT/:id
+    // users /PUT/users/:id
     it('Should update a SINGLE user on /<id> PUT', function(done) {
         var request = chai.request(app);
-        request.put('/' + user._id)
+        request.put('/users/' + user._id)
             .set('content-type', 'application/x-www-form-urlencoded')
             .send({
                 email: "jamesharris@gmail.com"
@@ -43,7 +43,7 @@ describe('User', function() {
                 res.should.be.html;
                 res.text.should.match(/Edit Profile/);
                 request
-                    .get('/' + user._id + '/edit')
+                    .get('/users/' + user._id + '/edit')
                     .end(function(err, res) {
                         res.should.have.status(200);
                         res.should.be.html;
@@ -54,10 +54,10 @@ describe('User', function() {
             });
     });
 
-    // users /GET
+    // users /GET/users
     it('Should list ALL user locations on / GET', function(done) {
         chai.request(app)
-            .get('/')
+            .get('/users')
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
@@ -67,7 +67,7 @@ describe('User', function() {
             });
     });
 
-    // users /POST
+    // users /POST/users
     it('Should add a SINGLE user on / POST', function(done) {
         var request = chai.request(app);
         request.post('/users')
@@ -86,7 +86,7 @@ describe('User', function() {
                     "firstname": "Rowan"
                 }, function(err, thisUser) {
                     request
-                        .get('/' + thisUser._id + '/edit')
+                        .get('/users/' + thisUser._id + '/edit')
                         .end(function(err, res) {
                             res.should.have.status(200);
                             res.should.be.html;
@@ -103,10 +103,10 @@ describe('User', function() {
             });
     });
 
-    // users /DELETE/:id
+    // users /DELETE/users/:id
     it('Should delete a SINGLE user on /<id> DELETE', function(done) {
         var request = chai.request(app);
-        request.delete('/' + user._id)
+        request.delete('/users/' + user._id)
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
