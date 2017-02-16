@@ -1,0 +1,15 @@
+<h1><%= title %><h1>
+
+<form action="/sessions" method="post">
+    <div class="input-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" placeholder="Please enter your email" required>
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" placeholder="Please enter your password" required>
+    </div>
+
+    <input type="submit" value="Login">
+</form>

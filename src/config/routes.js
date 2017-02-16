@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var locationsController = require('../controllers/locations');
 var usersController = require('../controllers/users');
+var sessionsController = require('../controllers/sessions');
 
 router.route('sessions')
     .delete(sessionsController.delete)
