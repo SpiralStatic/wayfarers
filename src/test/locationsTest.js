@@ -17,17 +17,35 @@ describe('Location', function() {
         images: ["image1", "image2"]
     });
 
-    beforeEach(function() {
+    before(function(done) {
         location.save(function(err, newLocation) {
             if (err) return console.log(err);
             location._id = newLocation._id;
+            done();
         });
     });
 
-    afterEach(function() {
+    after(function(done) {
         Location.findByIdAndRemove(location._id, function(err) {
             if (err) return console.log(err);
         });
+        done();
+    });
+
+    // locations /GET/:id
+    it('Should list a SINGLE location on /<id> GET', function(done) {
+        var request = chai.request(app);
+        request.get('/' + location._id)
+            .end(function(err, res) {
+                console.log("END GET:id test");
+                res.should.have.status(200);
+                res.should.be.html;
+                res.text.should.match(/Chapter/);
+                res.text.should.match(/Cornwall/);
+                res.text.should.match(/<img src="image1"/);
+                res.text.should.match(/<img src="image2"/);
+                done();
+            });
     });
 
     // locations /GET
@@ -40,23 +58,6 @@ describe('Location', function() {
                 res.text.should.match(/Fables/);
                 res.text.should.match(/Cornwall/);
                 res.text.should.match(/<img src="image1"/);
-                done();
-            });
-    });
-
-    // locations /GET/:id
-    it('Should list a SINGLE location on /<id> GET', function(done) {
-        console.log("GET:id: " + location);
-        var request = chai.request(app);
-        request.get('/' + location._id)
-            .end(function(err, res) {
-                console.log("END GET:id test");
-                res.should.have.status(200);
-                res.should.be.html;
-                res.text.should.match(/Chapter/);
-                res.text.should.match(/Cornwall/);
-                res.text.should.match(/<img src="image1"/);
-                res.text.should.match(/<img src="image2"/);
                 done();
             });
     });

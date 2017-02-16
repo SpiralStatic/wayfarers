@@ -1,1 +1,9 @@
-<h3>FORM</h3>
+<form action="/locations" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="name" value="<% location.name %>" required>
+    <input type="date" name="date" value="<% location.date %>" required>
+    <input type="text" name="description" value="<% location.description %>">
+    <input type="number" name="longitude" value="<% location.longitude %>" min="-180" max="180">
+    <input type="number" name="latitude" value="<% location.latitude %>" min="-90" max="90">
+    <input type="text" name="images" value="<% location.name %>" required>
+</form>
