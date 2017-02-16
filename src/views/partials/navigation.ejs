@@ -9,8 +9,20 @@
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             <ul class="nav nav-pills">
                 <li role="presentation"><a href="/">Fables</a></li>
-                <li role="presentation"><a href="/users/new">Register</a></li>
-                <li role="presentation"><a href="/sessions/new">Login</a></li>
+
+                <%# if(user) { %>
+                    <li role="presentation"><a href="/users/<%#= user.id %>edit">Profile</a></li>
+
+                    <%# <form action="/sessions" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <li role="presentation"><a><input class="non-button" type="submit" value="Logout"></a><li>
+                    </form>%>
+
+                <%# } else { %>
+                    <li role="presentation"><a href="/users/new">Register</a></li>
+
+                    <li role="presentation"><a href="/sessions/new">Login</a></li>
+                <%# } %>
             </ul>
         </div>
     </div>
