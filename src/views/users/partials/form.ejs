@@ -1,8 +1,4 @@
-<form action="/<%= user.id %>" method="post">
-
-    <% if (user.id !== "") { %>
-        <input type="hidden" name="_method" value="put">
-    <% } %>
+<form action="/users/<%= user.id %>" method="post">
 
     <div class="input-group">
         <label for="name">First Name:</label>
@@ -16,7 +12,7 @@
 
     <div class="input-group">
         <label for="name">Email:</label>
-        <input type="password" class="form-control" name="email" placeholder="Please enter your email" value="<%= user.email %>" required>
+        <input type="email" class="form-control" name="email" placeholder="Please enter your email" value="<%= user.email %>" required>
     </div>
 
     <div class="input-group">
@@ -24,11 +20,11 @@
         <input type="password" class="form-control" name="password" placeholder="Please enter your password" minlength="5" required>
     </div>
 
-    <div class="input-group">
-        <label for="repassword">Retype Password:</label>
-        <input type="password" class="form-control" name="repassword" placeholder="Please retype your password" minlength="5" required>
-    </div>
+    <% if (user.id !== "") { %>
+        <input type="hidden" name="_method" value="put">
+        <input type="submit" value="Update Profile">
+    <% } else { %>
+        <input type="submit" value="Register">
+    <% } %>
 
-
-    <input type="submit" value="Update Profile">
 </form>
