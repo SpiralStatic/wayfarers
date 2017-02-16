@@ -1,6 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var locationsController = require('../controllers/locations');
+var usersController = require('../controllers/users');
+
+router.route('/users')
+    .get(usersController.index)
+    .post(usersController.create);
+
+router.route('/users/new')
+    .get(usersController.new);
+
+router.route('/users/:id')
+    .put(usersController.update);
+
+router.route('/users/:id/edit')
+    .get(usersController.edit);
 
 router.route('/')
       .get(locationsController.index)

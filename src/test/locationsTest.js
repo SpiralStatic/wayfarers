@@ -7,7 +7,7 @@ var Location = require('../models/location');
 
 chai.use(chaiHttp);
 
-describe('Location', function() {
+xdescribe('Location', function() {
     var location = new Location({
         name: "Cornwall",
         date: new Date("2014-09-21"),
@@ -47,7 +47,7 @@ describe('Location', function() {
             });
     });
 
-    // locations /PUT/:_id
+    // locations /PUT/:id
     it('Should update a SINGLE location on /<id> PUT', function(done) {
         var request = chai.request(app);
         request.put('/' + location._id)
@@ -81,7 +81,7 @@ describe('Location', function() {
                 res.should.be.html;
                 res.text.should.match(/Fables/);
                 res.text.should.match(/York/);
-                res.text.should.match(/<img src="image1"/);
+                res.text.should.match(/<img src="http:\/\/angelstravelandtours.com\/wp-content\/uploads\/2014\/05\/york-1.jpg"/);
                 done();
             });
     });
@@ -122,7 +122,7 @@ describe('Location', function() {
             });
     });
 
-    // locations /DELETE/:_id
+    // locations /DELETE/:id
     it('Should delete a SINGLE location on /<id> DELETE', function(done) {
         var request = chai.request(app);
         request.delete('/' + location._id)
