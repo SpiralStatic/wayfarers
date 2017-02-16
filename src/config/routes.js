@@ -3,6 +3,13 @@ var router = express.Router();
 var locationsController = require('../controllers/locations');
 var usersController = require('../controllers/users');
 
+router.route('sessions')
+    .delete(sessionsController.delete)
+    .post(sessionsController.create);
+
+router.route('/sessions/new')
+    .get(sessionsController.new);
+
 router.route('/users')
     .get(usersController.index)
     .post(usersController.create);
@@ -17,18 +24,18 @@ router.route('/users/:id/edit')
     .get(usersController.edit);
 
 router.route('/')
-      .get(locationsController.index)
-      .post(locationsController.create);
+    .get(locationsController.index)
+    .post(locationsController.create);
 
 router.route('/new')
-      .get(locationsController.new);
+    .get(locationsController.new);
 
 router.route('/:id')
-      .get(locationsController.show)
-      .put(locationsController.update)
-      .delete(locationsController.delete);
+    .get(locationsController.show)
+    .put(locationsController.update)
+    .delete(locationsController.delete);
 
 router.route('/:id/edit')
-      .get(locationsController.edit);
+    .get(locationsController.edit);
 
 module.exports = router;
