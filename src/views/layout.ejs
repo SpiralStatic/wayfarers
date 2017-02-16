@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <%- include partials/stylesheets %>
-        <title></title>
-    </head>
-    <body>
-        <%# Main Content Goes Here%>
-        <%- body %>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <%- include partials/stylesheets %>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include partials/navigation %>
+                <%# Main Content Goes Here%>
+                    <%- body %>
+        </div>
+    </div>
+</body>
+
 </html>

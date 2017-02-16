@@ -12,8 +12,8 @@ describe('Location', function() {
         name: "Cornwall",
         date: new Date("2014-09-21"),
         description: "Great fews days surfing the waves",
-        longitude: 34.2498237739,
-        latitude: 78.89847897381,
+        longitude: 50.576492,
+        latitude: -4.908804,
         images: ["image1", "image2"]
     });
 
@@ -66,8 +66,8 @@ describe('Location', function() {
                 name: "Snowdonia",
                 date: new Date("2015-05-11"),
                 description: "Great weekend hiking",
-                longitude: 35.93485730194,
-                latitude: 68.89847897381,
+                longitude: 53.123158,
+                latitude: -3.993747,
                 images: ["image1", "image2"]
             })
             .end(function(err, res) {
