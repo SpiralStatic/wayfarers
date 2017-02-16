@@ -7,7 +7,7 @@ function indexLocations(req, res) {
     if (err) return res.status(500).send(err.message);
 
     // Data return so now we can render
-    res.render("locations/index", {
+    res.status(200).render("locations/index", {
         title: "Fables",
         locations: locations
     });
@@ -19,12 +19,12 @@ function showLocation(req, res) {
     Location.findById(req.params.id, function(err, location) {
 
         // Check to see if post is returned
-        if (!location) return res.status(404).send("Not Found");
+        if (!location) return res.status(404).send("Location Not Found");
 
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 
-        res.render("locations/show", {
+        res.status(200).render("locations/show", {
             title: "Chapter",
             location: location
         });

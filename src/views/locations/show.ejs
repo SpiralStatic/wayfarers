@@ -1,1 +1,9 @@
-<h1>SHOW</h1>
+<h1>Chapter</h1>
+<h5><%= location.name %></h5>
+<h5><%= location.date %></h5>
+<p><%= location.description %></p>
+<p><%= location.longitude, location.latitude %></p>
+
+<% location.images.map((index, image) => { %>
+    <img><%= image %></img>
+<% }) %>

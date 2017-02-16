@@ -24,9 +24,7 @@ var locationSchema = mongoose.Schema({
         min: -90,
         max: 90
     },
-    images: [{
-        type: String
-    }]
+    images: [String]
 });
 
 // Tell mongoose to create a real model from our schema and export it

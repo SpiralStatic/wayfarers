@@ -20,12 +20,12 @@ describe('Location', function() {
     beforeEach(function() {
         location.save(function(err, newLocation) {
             if (err) return console.log(err);
-            location.id = newLocation.id;
+            location._id = newLocation._id;
         });
     });
 
     afterEach(function() {
-        Location.findByIdAndRemove(location.id, function(err) {
+        Location.findByIdAndRemove(location._id, function(err) {
             if (err) return console.log(err);
         });
     });
@@ -33,25 +33,30 @@ describe('Location', function() {
     // locations /GET
     it('Should list ALL locations on / GET', function(done) {
         var request = chai.request(app);
-        request
-            .get('/')
+        request.get('/')
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
                 res.text.should.match(/Fables/);
                 res.text.should.match(/Cornwall/);
+                res.text.should.match(/<img src="image1"/);
                 done();
             });
     });
 
     // locations /GET/:id
     it('Should list a SINGLE location on /<id> GET', function(done) {
-        chai.request(app)
-            .get('/' + location.id)
+        console.log("GET:id: " + location);
+        var request = chai.request(app);
+        request.get('/' + location._id)
             .end(function(err, res) {
+                console.log("END GET:id test");
                 res.should.have.status(200);
                 res.should.be.html;
+                res.text.should.match(/Chapter/);
                 res.text.should.match(/Cornwall/);
+                res.text.should.match(/<img src="image1"/);
+                res.text.should.match(/<img src="image2"/);
                 done();
             });
     });
@@ -90,10 +95,10 @@ describe('Location', function() {
             });
     });
 
-    // locations /PUT/:id
+    // locations /PUT/:_id
     it('Should update a SINGLE location on /<id> PUT', function(done) {
         var request = chai.request(app);
-        request.put('/' + location.id)
+        request.put('/' + location._id)
             .set('content-type', 'application/x-www-form-urlencoded')
             .send({
                 description: "Had a blast exploring Cornwall",
@@ -104,7 +109,7 @@ describe('Location', function() {
                 res.should.be.html;
                 res.text.should.match(/All locations/);
                 request
-                    .get('/' + location.id)
+                    .get('/' + location._id)
                     .end(function(err, res) {
                         res.should.have.status(200);
                         res.should.be.html;
@@ -115,16 +120,16 @@ describe('Location', function() {
             });
     });
 
-    // locations /DELETE/:id
-    it('Should delete a SINGLE location on /<id> DELETE', function(done) {
+    // locations /DELETE/:_id
+    it('Should delete a SINGLE location on /<_id> DELETE', function(done) {
         var request = chai.request(app);
-        request.delete('/' + location.id)
+        request.delete('/' + location._id)
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.html;
                 res.text.should.match(/Fables/);
                 request
-                    .get('/' + location.id)
+                    .get('/' + location._id)
                     .end(function(err, res) {
                         res.should.have.status(404);
                         done();

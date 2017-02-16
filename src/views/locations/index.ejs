@@ -3,12 +3,8 @@
 <h3>See the stories people around the world people have been making</h3>
 
 <% for(let i = 0; i < locations.length; i++) { %>
-    <h5><%= locations[i].name %></h5>
+    <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
     <h5><%= locations[i].date %></h5>
     <p><%= locations[i].description %></p>
-    <p><%= locations[i].longitude, locations[i].latitude %></p>
-    
-    <% locations[i].images.map((index, image) => { %>
-        <img><%= image %></img>
-    <% }) %>
+    <img src="<%= locations[i].images[0] %>" alt="<% locations[i].name %> Cover Image"</img>
 <% } %>
