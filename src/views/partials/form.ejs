@@ -1,12 +1,13 @@
-<form action="/locations" method="post">
+<form action="/" method="post">
     <% if(location.id !== "") { %>
         <input type="hidden" name="_method" value="put">
     <% } %>
+
     <input type="text" name="name" placeholder="Please enter a location" value="<%= location.name %>" required>
 
-    <input type="date" name="date" value="<%= location.date %>" min="1888-01-01" max="2017-02-16" required>
+    <input type="date" name="date" value="<%= location.date.toISOString().split('T')[0] %>" min="1888-01-01" max="2017-02-16" required>
 
-    <textarea name="description" placeholder="Enter a description" value="<%= location.description %>"></textarea>
+    <textarea name="description" placeholder="Enter a description"><%= location.description %></textarea>
 
     <input type="number" name="longitude" placeholder="Longitude" value="<%= location.longitude %>" step="any" min="-180" max="180">
 
