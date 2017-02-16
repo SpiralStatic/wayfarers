@@ -14,12 +14,12 @@ var locationSchema = mongoose.Schema({
         type: String,
         maxlength: 500
     },
-    Longitude: {
+    longitude: {
         type: Number,
         min: -180,
         max: 180
     },
-    Latitude: {
+    latitude: {
         type: Number,
         min: -90,
         max: 90
