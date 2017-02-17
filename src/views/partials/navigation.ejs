@@ -4,25 +4,31 @@
             <a class="navbar-brand" href="/">
                 <img alt="Wayfarers Logo" src="">
             </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
 
-        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-menu">
             <ul class="nav nav-pills">
                 <li role="presentation"><a href="/">Fables</a></li>
 
-                <%# if(user) { %>
-                    <li role="presentation"><a href="/users/<%#= user.id %>edit">Profile</a></li>
+                <% if(user) { %>
+                    <li role="presentation"><a href="/users/<%= user.id %>/edit">Profile</a></li>
 
-                    <%# <form action="/sessions" method="post">
+                     <form action="/sessions" method="post">
                         <input type="hidden" name="_method" value="delete">
                         <li role="presentation"><a><input class="non-button" type="submit" value="Logout"></a><li>
-                    </form>%>
+                    </form>
 
-                <%# } else { %>
+                <% } else { %>
                     <li role="presentation"><a href="/users/new">Register</a></li>
 
                     <li role="presentation"><a href="/sessions/new">Login</a></li>
-                <%# } %>
+                <% } %>
             </ul>
         </div>
     </div>

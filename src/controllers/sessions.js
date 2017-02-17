@@ -22,7 +22,7 @@ function createSession(req, res) {
             // save the user to the session ( log them in )
             req.session.user = user.id;
 
-            res.redirect("/");
+            res.redirect('/');
 
         } else {
 
@@ -33,7 +33,7 @@ function createSession(req, res) {
             req.flash('error', "Email or password was incorrect");
 
             // redirect with error back to the login form
-            res.redirect("/sessions/new");
+            res.redirect('/sessions/new');
         }
     });
 }
@@ -44,7 +44,7 @@ function deleteSession(req, res) {
     delete req.session.user;
 
     // redirect to login page
-    res.redirect("/sessions/new");
+    res.redirect('/sessions/new');
 }
 
 module.exports = {

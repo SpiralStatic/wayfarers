@@ -9,7 +9,7 @@ function indexUserLocations(req, res) {
             if (err) return res.status(500).send(err);
 
             // data return so now we can render
-            res.render("users/index", {
+            res.render('users/index', {
                 title: "Your Chapters",
                 locations: user.locations
         });
@@ -17,11 +17,8 @@ function indexUserLocations(req, res) {
 }
 
 function newUser(req, res) {
-    res.render("users/new", {
+    res.render('users/new', {
         title: "Register",
-        user: {
-            id: ""
-        }
     });
 }
 
@@ -34,7 +31,7 @@ function editUser(req, res) {
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 
-        res.render("users/edit", {
+        res.render('users/edit', {
             title: "Edit Profile",
             user: user
         });
@@ -47,7 +44,7 @@ function createUser(req, res) {
         if (err) return res.status(500).send(err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect("/");
+        res.redirect('/');
     });
 }
 
@@ -58,7 +55,7 @@ function updateUser(req, res) {
         if (err) return res.status(500).send(err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect("/users");
+        res.redirect('/users');
     });
 }
 
@@ -69,7 +66,7 @@ function deleteUser(req, res) {
         if (err) return res.status(500).send(err.message);
 
         // Redirect to a GET request
-        res.redirect("/");
+        res.redirect('/');
     });
 }
 

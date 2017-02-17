@@ -3,11 +3,12 @@ var layouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
-//var cookieParser = require('cookie-parser');
-//var session = require('express-session');
-//var flash = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var flash = require('connect-flash');
 
 var routes = require('./config/routes');
+var User = require('./models/user');
 
 var app = express();
 
@@ -17,37 +18,69 @@ mongoose.connect('mongodb://localhost/wayfarers', function() {
 });
 
 // Add support for cookies
-//app.use(cookieParser());
+app.use(cookieParser());
 
 // Add support for sessions
-// app.use(session({
-//     resave: false,
-//     saveUninitialized: true,
-//     secret: 'wayfarersuniteundertheyellowsun'
-// }));
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'wayfarersuniteundertheyellowsun'
+}));
+
+// Load logged in user
+app.use(function(req, res, next) {
+
+    // No user id? just move on
+    if (!req.session.user) {
+        res.locals.user = false;
+        next();
+    } else {
+
+        // Load the user with the ID in the session
+        User.findById(req.session.user, function(err, user) {
+
+            if (user) {
+                // Add the user to the request object
+                req.user = user;
+                // Add it to locals so we can use it in all templates
+                res.locals.user = user;
+            } else {
+                // Couldn't find it... that's weird. clear the session
+                req.session.user = null;
+            }
+
+            next(err);
+
+        });
+
+    }
+
+});
 
 // Add flash messaging support
-// app.use(flash());
+app.use(flash());
 
 // Allow flash messages to be used in every template
-// app.use(function(req, res, next){
-//     // res.locals will be available in every template
-//     res.locals.errors = req.flash('error');
-//     console.log(res.locals.errors);
-//     next();
-// });
+app.use(function(req, res, next) {
+    // res.locals will be available in every template
+    res.locals.errors = req.flash('error');
+    console.log(res.locals.errors);
+    next();
+});
 
 // Body Parser
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 // Method Override
-app.use(methodOverride(function(req, res){
-  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
-    var method = req.body._method;
-    delete req.body._method;
-    return method;
-  }
+app.use(methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method;
+        delete req.body._method;
+        return method;
+    }
 }));
 
 // Set the view engine to be ejs
@@ -58,7 +91,7 @@ app.use(layouts);
 
 // Check for user login
 // app.use(function(req, res, next) {
-//     var urls = ["/sessions/new", "/users/new", "/sessions", "/users"];
+//     var urls = ["/sessions/new", "/users/new", "/sessions", "/users", "/"];
 //     if(urls.indexOf(req.url) === -1) {
 //         if (!req.user) return res.redirect('/sessions/new');
 //     }
