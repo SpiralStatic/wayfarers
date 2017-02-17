@@ -14,20 +14,20 @@
 
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-menu">
             <ul class="nav nav-pills">
-                <li role="presentation"><a href="/">Fables</a></li>
+                <li role="presentation"><a class="btn btn-default" href="/">Fables</a></li>
 
                 <% if(user) { %>
-                    <li role="presentation"><a href="/users/<%= user.id %>/edit">Profile</a></li>
+                    <li role="presentation"><a class="btn btn-default" href="/users/<%= user.id %>/edit">Profile</a></li>
 
-                    <form action="/sessions" method="post">
+                    <li role="presentation"><form action="/sessions" method="post">
                         <input type="hidden" name="_method" value="delete">
-                        <li role="presentation"><input class="btn btn-link" type="submit" value="Logout"><li>
-                    </form>
+                        <input class="btn btn-default" type="submit" value="Logout">
+                    </form><li>
 
                 <% } else { %>
-                    <li role="presentation"><a href="/users/new">Register</a></li>
+                    <li role="presentation"><a class="btn btn-default" href="/users/new">Register</a></li>
 
-                    <li role="presentation"><a href="/sessions/new">Login</a></li>
+                    <li role="presentation"><a class="btn btn-default" href="/sessions/new">Login</a></li>
                 <% } %>
             </ul>
         </div>

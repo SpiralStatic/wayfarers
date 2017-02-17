@@ -4,7 +4,6 @@ function indexUserLocations(req, res) {
     User.findById(req.user.id)
         .populate('locations')
         .exec(function(err, user) {
-
             // check for errors and return 500 error and message if found
             if (err) return res.status(500).send(err);
 
@@ -24,7 +23,6 @@ function newUser(req, res) {
 
 function editUser(req, res) {
     User.findById(req.params.id, function(err, user) {
-
         // Check to see if post is returned
         if (!user) return res.status(404).send("Not Found");
 
@@ -50,7 +48,6 @@ function createUser(req, res) {
 
 function updateUser(req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
-
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 
@@ -61,7 +58,6 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
     User.findByIdAndRemove(req.params.id, function(err, user) {
-
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 

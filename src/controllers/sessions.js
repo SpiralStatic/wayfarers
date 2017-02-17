@@ -10,22 +10,18 @@ function newSession(req, res) {
 
 // CREATE - Handles logins
 function createSession(req, res) {
-
     // look up the user with the details from the form
     User.findOne({
         email: req.body.email
     }, function(err, user) {
-
         // did we find a user and is the password correct
         if (user && user.password == req.body.password) {
-
             // save the user to the session ( log them in )
             req.session.user = user.id;
 
             res.redirect('/');
 
         } else {
-
             // add any other errors too
             if (err) req.flash('error', err.message);
 
