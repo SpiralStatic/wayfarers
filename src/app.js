@@ -29,16 +29,13 @@ app.use(session({
 
 // Load logged in user
 app.use(function(req, res, next) {
-
     // No user id? just move on
     if (!req.session.user) {
         res.locals.user = false;
         next();
     } else {
-
         // Load the user with the ID in the session
         User.findById(req.session.user, function(err, user) {
-
             if (user) {
                 // Add the user to the request object
                 req.user = user;
@@ -50,11 +47,8 @@ app.use(function(req, res, next) {
             }
 
             next(err);
-
         });
-
     }
-
 });
 
 // Add flash messaging support
@@ -64,7 +58,9 @@ app.use(flash());
 app.use(function(req, res, next) {
     // res.locals will be available in every template
     res.locals.errors = req.flash('error');
+    res.locals.success = req.flash('success');
     console.log(res.locals.errors);
+    console.log(res.locals.success);
     next();
 });
 
