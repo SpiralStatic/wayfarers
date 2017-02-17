@@ -1,11 +1,11 @@
-<div class="page-header">
+<div class="page-header thumbnail">
     <h1><%= title %></h1>
 
     <h3>See the stories people around the world people have been making</h3>
 </div>
 
 <% for(let i = 0; i < locations.length; i++) { %>
-    <div class="thumbnail">
+    <div class="container thumbnail">
         <div class="caption">
             <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
             <h5><%= locations[i].date.toDateString() %></h5>

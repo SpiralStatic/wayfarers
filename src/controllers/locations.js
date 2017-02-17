@@ -73,9 +73,6 @@ function createLocation(req, res) {
                 }
             },
             function(err, user) {
-                console.log(req.user);
-                console.log(req.user._id);
-                console.log(user);
                 // check for errors and return 500 if there was a problem
                 if (err) return res.status(500).send(err.message);
                 // redirect the user to a GET route. We'll go back to the INDEX.
@@ -98,9 +95,22 @@ function updateLocation(req, res) {
 
 function deleteLocation(req, res) {
     Location.findByIdAndRemove(req.params.id, function(err, location) {
-
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
+        User.findByIdAndUpdate(req.user.id, {
+                $pull: {
+                    locations: {
+                        _id: location.id
+                    }
+                }
+            },
+            function(err, user) {
+                // check for errors and return 500 if there was a problem
+                if (err) return res.status(500).send(err.message);
+                // redirect the user to a GET route. We'll go back to the INDEX.
+                res.redirect("/");
+            }
+        );
 
         // Redirect to a GET request
         res.redirect("/");
