@@ -18,6 +18,9 @@ function indexUserLocations(req, res) {
 function newUser(req, res) {
     res.render('users/new', {
         title: "Register",
+        user: {
+            id: ""
+        }
     });
 }
 
@@ -42,7 +45,7 @@ function createUser(req, res) {
         if (err) return res.status(500).send(err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect('/');
+        res.redirect('/sessions/new');
     });
 }
 

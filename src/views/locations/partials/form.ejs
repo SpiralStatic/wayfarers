@@ -38,5 +38,7 @@
         <input type="text" class="form-control" name="images" placeholder="Add images" value="<%= location.images %>" multiple>
     </div>
 
+    <input type="hidden" name="user" value="<%= locals.user.id %>">
+
     <input type="submit" value="Add Chapter">
 </form>
