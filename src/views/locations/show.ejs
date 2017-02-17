@@ -2,7 +2,8 @@
 <h5><%= location.name %></h5>
 <h5><%= location.date.toDateString() %></h5>
 <p><%= location.description %></p>
-<p><%= location.longitude %>, <%= location.latitude %></p>
+<div id="coords" value="<%= location.latitude %>,<%= location.longitude %>"></div>
+<div id="map" class="jumbotron"></div>
 
 <% location.images.map((image, i) => { %>
     <img src="<%= image %>" alt="<%= location.name %> Image <%= i %>"</img>

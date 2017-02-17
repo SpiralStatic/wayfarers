@@ -59,8 +59,6 @@ app.use(function(req, res, next) {
     // res.locals will be available in every template
     res.locals.errors = req.flash('error');
     res.locals.success = req.flash('success');
-    console.log(res.locals.errors);
-    console.log(res.locals.success);
     next();
 });
 
