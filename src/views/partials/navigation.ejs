@@ -19,9 +19,9 @@
                 <% if(user) { %>
                     <li role="presentation"><a href="/users/<%= user.id %>/edit">Profile</a></li>
 
-                     <form action="/sessions" method="post">
+                    <form action="/sessions" method="post">
                         <input type="hidden" name="_method" value="delete">
-                        <li role="presentation"><a><input class="non-button" type="submit" value="Logout"></a><li>
+                        <li role="presentation"><input class="btn btn-link" type="submit" value="Logout"><li>
                     </form>
 
                 <% } else { %>
