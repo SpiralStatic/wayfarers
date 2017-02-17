@@ -20,8 +20,6 @@
         <input type="password" class="form-control" name="password" placeholder="Please enter your password" minlength="5" required>
     </div>
 
-    <input type="hidden" name="posts" value="">
-
     <% if (user.id !== "") { %>
         <input type="hidden" name="_method" value="put">
         <input type="submit" value="Update Profile">

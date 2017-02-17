@@ -1,17 +1,18 @@
 var Location = require('../models/location');
+var User = require('../models/user');
 
 function indexLocations(req, res) {
     Location.find({}, function(err, locations) {
 
-    // Check for errors and return 500 if there is a problem
-    if (err) return res.status(500).send(err.message);
+        // Check for errors and return 500 if there is a problem
+        if (err) return res.status(500).send(err.message);
 
-    // Data return so now we can render
-    res.status(200).render("locations/index", {
-        title: "Fables",
-        locations: locations
+        // Data return so now we can render
+        res.status(200).render("locations/index", {
+            title: "Fables",
+            locations: locations
+        });
     });
-});
 }
 
 function showLocation(req, res) {
@@ -34,9 +35,9 @@ function showLocation(req, res) {
 function newLocation(req, res) {
     // Create an empty Location
     var newLocation = {
-            id: "",
-            name: "",
-            description: ""
+        id: "",
+        name: "",
+        description: ""
     };
 
     res.render("locations/new", {
@@ -66,8 +67,21 @@ function createLocation(req, res) {
         // Check for errors and return 500 if there is a problem
         if (err) return res.status(500).send(err.message);
 
-        // Redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect("/");
+        User.findByIdAndUpdate(req.user._id, {
+                $addToSet: {
+                    locations: location
+                }
+            },
+            function(err, user) {
+                console.log(req.user);
+                console.log(req.user._id);
+                console.log(user);
+                // check for errors and return 500 if there was a problem
+                if (err) return res.status(500).send(err.message);
+                // redirect the user to a GET route. We'll go back to the INDEX.
+                res.redirect("/");
+            }
+        );
     });
 }
 

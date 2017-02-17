@@ -38,10 +38,10 @@ var userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    locations: {
+    locations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location'
-    }
+    }]
 });
 
 // Tell mongoose to create a real model from our schema and export it
