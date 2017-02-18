@@ -16,7 +16,7 @@
             <ul class="nav nav-pills">
                 <li role="presentation"><a class="btn btn-default" href="/">Fables</a></li>
 
-                <% if(user) { %>
+                <% if(user.id) { %>
                     <li role="presentation"><a class="btn btn-default" href="/users/<%= user.id %>/edit">Profile</a></li>
 
                     <li role="presentation"><form action="/sessions" method="post">
