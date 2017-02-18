@@ -3,7 +3,19 @@ var router = express.Router();
 var locationsController = require('../controllers/locations');
 var usersController = require('../controllers/users');
 var sessionsController = require('../controllers/sessions');
+var locationsApiController = require('../controllers/api/locations');
 
+// API section
+router.route('/api/chapters')
+    .get(locationsApiController.index)
+    .post(locationsApiController.create);
+
+router.route('/api/chapters/:id')
+    .get(locationsApiController.show)
+    .put(locationsApiController.update)
+    .delete(locationsApiController.delete);
+
+// Sessions
 router.route('/sessions')
     .delete(sessionsController.delete)
     .post(sessionsController.create);
@@ -11,6 +23,7 @@ router.route('/sessions')
 router.route('/sessions/new')
     .get(sessionsController.new);
 
+// Users
 router.route('/users')
     .get(usersController.index)
     .post(usersController.create);
@@ -24,6 +37,7 @@ router.route('/users/:id')
 router.route('/users/:id/edit')
     .get(usersController.edit);
 
+// RESTful
 router.route('/')
     .get(locationsController.index)
     .post(locationsController.create);

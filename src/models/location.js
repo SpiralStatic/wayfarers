@@ -29,15 +29,15 @@ var locationSchema = mongoose.Schema({
         type: String,
         maxlength: 500
     },
-    longitude: {
-        type: Number,
-        min: -180,
-        max: 180
-    },
     latitude: {
         type: Number,
         min: -90,
         max: 90
+    },
+    longitude: {
+        type: Number,
+        min: -180,
+        max: 180
     },
     images: [String],
     user: {
