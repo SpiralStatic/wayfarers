@@ -5,7 +5,7 @@ function indexUserLocations(req, res) {
         .populate('locations')
         .exec(function(err, user) {
             // check for errors and return 500 error and message if found
-            if (err) return res.status(500).send(err);
+            if (err) req.flash('error', err.message);
 
             // data return so now we can render
             res.render('users/index', {
@@ -27,10 +27,10 @@ function newUser(req, res) {
 function editUser(req, res) {
     User.findById(req.params.id, function(err, user) {
         // Check to see if post is returned
-        if (!user) return res.status(404).send("Not Found");
+        if (!user) req.flash('error', "Location not found");
 
         // Check for errors and return 500 if there is a problem
-        if (err) return res.status(500).send(err.message);
+        if (err) req.flash('error', err.message);
 
         res.render('users/edit', {
             title: "Edit Profile",
@@ -42,7 +42,7 @@ function editUser(req, res) {
 function createUser(req, res) {
     User.create(req.body, function(err, user) {
         // Check for errors and return 500 if there is a problem
-        if (err) return res.status(500).send(err.message);
+        if (err) req.flash('error', err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
         res.redirect('/sessions/new');
@@ -52,7 +52,7 @@ function createUser(req, res) {
 function updateUser(req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
         // Check for errors and return 500 if there is a problem
-        if (err) return res.status(500).send(err.message);
+        if (err) req.flash('error', err.message);
 
         // Redirect the user to a GET route. We'll go back to the INDEX.
         res.redirect('/users');
@@ -62,7 +62,7 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
     User.findByIdAndRemove(req.params.id, function(err, user) {
         // Check for errors and return 500 if there is a problem
-        if (err) return res.status(500).send(err.message);
+        if (err) req.flash('error', err.message);
 
         // Redirect to a GET request
         res.redirect('/');
