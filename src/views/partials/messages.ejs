@@ -1,10 +1,15 @@
 <% if (success.length > 0) { %>
-    <% console.log(success) %>
-    <div class="col col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 alert alert-success" role="alert">
+    <div class="col col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <p><%= success %></p>
     </div>
 <% } else if (errors.length > 0) { %>
-    <div class="col col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 alert alert-danger" role="alert">
+    <div class="col col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <p><%= errors %></p>
     </div>
 <% } %>

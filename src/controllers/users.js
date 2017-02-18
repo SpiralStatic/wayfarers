@@ -17,10 +17,7 @@ function indexUserLocations(req, res) {
 
 function newUser(req, res) {
     res.render('users/new', {
-        title: "Register",
-        user: {
-            id: ""
-        }
+        title: "Register"
     });
 }
 

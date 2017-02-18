@@ -1,44 +1,44 @@
-<form class="center" action="/<%= location.id %>" method="post">
+<form action="/<%= location.id %>" method="post">
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="name">Location:</label>
         <input type="text" class="form-control" name="name" placeholder="Please enter a location" value="<%= location.name %>" required>
     </div>
 
     <% if (location.id !== "") { %>
         <input type="hidden" name="_method" value="put">
-        <div class="input-group">
+        <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <label for="date">Date:</label>
             <input type="date" class="form-control" name="date" value="<%= location.date.toISOString().split('T')[0] %>" min="1888-01-01" max="2017-02-16" required>
         </div>
     <% } else { %>
-        <div class="input-group">
+        <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <label for="date">Date:</label>
             <input type="date" class="form-control" name="date" min="1888-01-01" max="2017-02-16" required>
         </div>
     <% } %>
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="ndescriptioname">Description:</label>
         <textarea name="description" class="form-control" placeholder="Enter a description"><%= location.description %></textarea>
     </div>
 
-    <div class="input-group">
-        <label for="longitude">Longitude:</label>
-        <input type="number" class="form-control" name="longitude" placeholder="Longitude" value="<%= location.longitude %>" step="any" min="-180" max="180">
-    </div>
-
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="latitude">Latitude:</label>
         <input type="number" class="form-control" name="latitude" placeholder="Latitude" value="<%= location.latitude %>" step="any" min="-90" max="90">
     </div>
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <label for="longitude">Longitude:</label>
+        <input type="number" class="form-control" name="longitude" placeholder="Longitude" value="<%= location.longitude %>" step="any" min="-180" max="180">
+    </div>
+
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="images">Images:</label>
         <input type="text" class="form-control" name="images" placeholder="Add images" value="<%= location.images %>" multiple>
     </div>
 
     <input type="hidden" name="user" value="<%= locals.user.id %>">
 
-    <input type="submit" value="Add Chapter">
+    <input type="submit" class="btn btn-default" value="Add Chapter">
 </form>

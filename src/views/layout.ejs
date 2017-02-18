@@ -3,26 +3,30 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%- include partials/stylesheets %>
-    <%- include partials/scripts %>
-    <title>
-        <%= title %>
-    </title>
+        <%- include partials/scripts %>
+            <title>
+                <%= title %>
+            </title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <%- include partials/navigation %>
-            <%- include partials/messages %>
-            <%# Main Content Goes Here%>
-            <div class="container-fluid">
+    <%- include partials/navigation %>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include partials/messages %>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <%# Main Content Goes Here%>
                 <div class="col col-sm-12 col-md-12 col-lg-12 text-center">
                     <%- body %>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

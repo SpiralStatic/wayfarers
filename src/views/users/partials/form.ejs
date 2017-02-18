@@ -1,30 +1,30 @@
 <form action="/users/<%= user.id %>" method="post">
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="name">First Name:</label>
         <input type="text" class="form-control" name="firstname" placeholder="Please enter your first name" value="<%= user.firstname %>" required>
     </div>
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="name">Last Name:</label>
         <input type="text" class="form-control" name="lastname" placeholder="Please enter your last name" value="<%= user.lastname %>" required>
     </div>
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="name">Email:</label>
         <input type="email" class="form-control" name="email" placeholder="Please enter your email" value="<%= user.email %>" required>
     </div>
 
-    <div class="input-group">
+    <div class="input-group col col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <label for="name">Password:</label>
         <input type="password" class="form-control" name="password" placeholder="Please enter your password" minlength="5" required>
     </div>
 
     <% if (user.id !== "") { %>
         <input type="hidden" name="_method" value="put">
-        <input type="submit" value="Update Profile">
+        <input type="submit" class="btn btn-default" value="Update Profile">
     <% } else { %>
-        <input type="submit" value="Register">
+        <input type="submit" class="btn btn-default" value="Register">
     <% } %>
 
 </form>
