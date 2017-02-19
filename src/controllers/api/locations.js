@@ -33,6 +33,13 @@ function showLocation(req, res) {
 function deleteLocation(req, res) {
     // Tell the data store to remove the location with the id in the request
     Location.findByIdAndRemove(req.params.id, function(err, location) {
+        // Check user permissions
+        if(location.user !== req.query.key) {
+            res.status(401).json({
+                error: "You do not have the correct API key to delete this content"
+            });
+        }
+
         if (err) res.status(500).json({
             error: err.message
         });
@@ -66,6 +73,13 @@ function updateLocation(req, res) {
             runValidators: true
         },
         function(err, location) {
+            // Check user permissions
+            if(location.user !== req.query.key) {
+                res.status(401).json({
+                    error: "You do not have the correct API key to update this content"
+                });
+            }
+
             if (err) res.status(500).json({
                 error: err.message
             });
@@ -77,8 +91,6 @@ function updateLocation(req, res) {
 
 // CREATE - POST /
 function createLocation(req, res) {
-    console.log("Body: " + JSON.stringify(req.body));
-    console.log(req.body.name);
     // Ask mongoose to save the data for us and wait for the response
     Location.create({
         "name": req.body.name,
@@ -94,7 +106,7 @@ function createLocation(req, res) {
         if (err) res.status(500).json({
             error: err.message
         });
-        console.log("Key: " + req.query.key);
+
         User.findByIdAndUpdate(req.query.key, {
                 $addToSet: {
                     locations: location
