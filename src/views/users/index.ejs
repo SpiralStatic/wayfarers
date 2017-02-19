@@ -1,1 +1,10 @@
-<h1><%= title %></h1>
+<% for(let i = 0; i < locations.length; i++) { %>
+    <div class="thumbnail col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="caption">
+            <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
+            <h5><%= locations[i].date.toDateString() %></h5>
+            <p><%= locations[i].description %></p>
+        </div>
+        <img src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
+    </div>
+<% } %>

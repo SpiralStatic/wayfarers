@@ -7,7 +7,7 @@
     <%- include partials/stylesheets %>
         <%- include partials/scripts %>
             <title>
-                <%= title %>
+                <%= header.title %>
             </title>
 </head>
 
@@ -23,6 +23,7 @@
             <div class="row">
                 <%# Main Content Goes Here%>
                 <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <%- include partials/title %>
                     <%- body %>
                 </div>
             </div>

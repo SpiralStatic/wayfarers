@@ -9,7 +9,9 @@ function indexUserLocations(req, res) {
 
             // data return so now we can render
             res.render('users/index', {
-                title: "Your Chapters",
+                header: {
+                    title: "Your Chapters"
+                },
                 locations: user.locations
         });
     });
@@ -17,7 +19,9 @@ function indexUserLocations(req, res) {
 
 function newUser(req, res) {
     res.render('users/new', {
-        title: "Register",
+        header: {
+            title: "Register"
+        },
         user: {
             id: ""
         }
@@ -33,7 +37,9 @@ function editUser(req, res) {
         if (err) req.flash('error', err.message);
 
         res.render('users/edit', {
-            title: "Edit Profile",
+            header: {
+                title: "Edit Profile"
+            },
             user: user
         });
     });

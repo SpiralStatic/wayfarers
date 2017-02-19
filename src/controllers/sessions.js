@@ -4,7 +4,9 @@ var User = require('../models/user');
 // NEW ( AKA Login )
 function newSession(req, res) {
     res.render('sessions/new', {
-        title: "Login"
+        header: {
+            title: "Login"
+        },
     });
 }
 

@@ -9,7 +9,10 @@ function indexLocations(req, res) {
 
         // Data return so now we can render
         res.status(200).render("locations/index", {
-            title: "Fables",
+            header: {
+                title: "Fables",
+                subtitle: "See the stories people around the world people have been making"
+        },
             locations: locations
         });
     });
@@ -26,7 +29,9 @@ function showLocation(req, res) {
         if (err) req.flash('error', err.message);
 
         res.status(200).render("locations/show", {
-            title: "Chapter",
+            header: {
+                title: "Chapter"
+            },
             location: location
         });
     });
@@ -41,7 +46,9 @@ function newLocation(req, res) {
     };
 
     res.render("locations/new", {
-        title: "Add a Chapter",
+        header: {
+            title: "Add a Chapter"
+        },
         location: newLocation
     });
 }
@@ -56,7 +63,9 @@ function editLocation(req, res) {
         if (err) req.flash('error', err.message);
 
         res.render("locations/edit", {
-            title: "Rewrite Chapter",
+            header: {
+                title: "Rewrite Chapter"
+            },
             location: location
         });
     });
