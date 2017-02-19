@@ -17,7 +17,16 @@
                 <li role="presentation"><a class="btn btn-default" href="/">Fables</a></li>
 
                 <% if(user.id) { %>
-                    <li role="presentation"><a class="btn btn-default" href="/users/<%= user.id %>/edit">Profile</a></li>
+                    <li role="presentation">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/users/<%= user.id %>/edit">Edit Profile</a></li>
+                            <li><a href="/users">View Chapters</a></li>
+                            <li><a href="/new">Create Chapter</a></li>
+                        </ul>
+                    </li>
 
                     <li role="presentation"><form action="/sessions" method="post">
                         <input type="hidden" name="_method" value="delete">
