@@ -6554,8 +6554,8 @@ div.mapJumbotron div {
 div.mapJumbotron div.overlay {
   position: absolute;
   top: 20%;
-  left: 35%;
-  width: 25%;
+  left: 25%;
+  width: 50%;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.4);
 }
