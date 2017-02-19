@@ -1,15 +1,27 @@
 
 <div id="coords" value="<%= location.latitude %>,<%= location.longitude %>"></div>
 
-<div class="jumbotron">
-    <div id="map"></div>
-    <div class="overlay container">
+<div class="mapJumbotron jumbotron">
+    <div id="overlay" class="overlay container">
+        <button id="overlayToggle" type="button" class="active close" aria-label="Collapse">
+            <span aria-hidden="true">x</span>
+        </button>
         <h1><%= title %></h1>
         <h5><%= location.name %></h5>
         <h5><%= location.date.toDateString() %></h5>
         <p><%= location.description %></p>
     </div>
+    <div id="map"></div>
 </div>
+
+<script>
+    $('#overlayToggle').on('click', () => {
+        $('#overlay').toggleClass('collapsed');
+        $(this).text((i, current) => {
+            return current === 'x' ?  'o' : 'x';
+        });
+    });
+</script>
 
 <% location.images.map((image, i) => { %>
     <div class="container">

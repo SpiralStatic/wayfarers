@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 @import '../node_modules/bootstrap-less/bootstrap/bootstrap.less';
 
 button {
@@ -20,14 +21,32 @@ img {
     max-height: 60vh;
 }
 
-.jumbotron {
+div.mapJumbotron {
+    position: relative;
+    padding: 0; !important
+
+
+    div {
+        z-index: 1;
+    }
+
     div.overlay {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
+        position: absolute;;
+        top: 20%;
+        left: 35%;
+        width: 25%;
         z-index: 2;
+
+        background-color: rgba(255,255,255, 0.4);
+    }
+
+    div.overlay.collapsed {
+        position: relative;;
+        top: inherit;
+        left: inherit;
+        width: inherit;
+
+        background-color: inherit;
     }
 }
 
@@ -35,10 +54,10 @@ nav {
     background-image: url('../images/old_map.png');
 
     .navbar-brand {
-        padding: 5%;
+        padding: 1vh;
 
         .logo {
-            height: 100%;
+            height: 8vh;
             width: auto;
         }
     }
