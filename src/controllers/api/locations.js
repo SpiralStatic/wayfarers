@@ -1,5 +1,6 @@
 var Location = require('../../models/location');
 var User = require('../../models/user');
+var masterKey = require('../../master');
 
 // INDEX - GET /
 function indexLocation(req, res) {
@@ -74,7 +75,7 @@ function updateLocation(req, res) {
         },
         function(err, location) {
             // Check user permissions
-            if(location.user !== req.query.key) {
+            if(location.user !== req.query.key || req.query.key !== masterKey.key) {
                 res.status(401).json({
                     error: "You do not have the correct API key to update this content"
                 });

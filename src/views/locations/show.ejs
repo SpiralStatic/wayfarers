@@ -27,7 +27,7 @@
     </div>
 <% }) %>
 
-<% if (location.user.toString() === locals.user.id.toString()) { %>
+<% if (locals.user && location.user.toString() === locals.user.id.toString()) { %>
     <div class="container">
         <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
             <button type="button" class="btn btn-default btn-lg">

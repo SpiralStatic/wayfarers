@@ -1,5 +1,6 @@
 var Location = require('../models/location');
 var User = require('../models/user');
+var masterKey = require('../master');
 
 function indexLocations(req, res) {
     Location.find({}, function(err, locations) {
@@ -13,7 +14,8 @@ function indexLocations(req, res) {
                 title: "Fables",
                 subtitle: "See the stories people around the world people have been making"
         },
-            locations: locations
+            locations: locations,
+            masterKey: masterKey
         });
     });
 }
