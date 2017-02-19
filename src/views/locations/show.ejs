@@ -27,17 +27,19 @@
     </div>
 <% }) %>
 
-<div class="container">
-    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <button type="button" class="btn btn-default btn-lg">
-        	<a href="/<%= location.id %>/edit">Rewrite Chapter</a>
-        </button>
-    </div>
+<% if (location.user.toString() === locals.user.id.toString()) { %>
+    <div class="container">
+        <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" class="btn btn-default btn-lg">
+            	<a href="/<%= location.id %>/edit">Rewrite Chapter</a>
+            </button>
+        </div>
 
-    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <form action="/<%= location.id %>" method="post">
-        	<input type="hidden" name="_method" value="delete">
-        	<input type="submit" class="btn btn-default btn-lg" value="Remove Chapter">
-        </form>
-    </div<
-</div>
+        <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <form action="/<%= location.id %>" method="post">
+            	<input type="hidden" name="_method" value="delete">
+            	<input type="submit" class="btn btn-default btn-lg" value="Remove Chapter">
+            </form>
+        </div<
+    </div>
+<% } %>
