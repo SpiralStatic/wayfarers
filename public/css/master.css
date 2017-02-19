@@ -6599,6 +6599,9 @@ div.chapterOptions .btn {
   margin: 2vh;
   width: 100%;
 }
+div.chapterOptions .btn:hover {
+  background-color: #ece5bf;
+}
 div.chapterOptions .chapterToggle {
   float: left;
   margin: 1vh 1vw ;
@@ -6617,4 +6620,7 @@ div.collapsed .chapterToggle {
 .close {
   font-size: 3rem;
   line-height: 3rem;
+}
+.btn:hover {
+  background-color: #bbd8e7;
 }

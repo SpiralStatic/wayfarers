@@ -8,7 +8,7 @@
 
         <img src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
 
-        <button class="upLike" type="button" class="btn btn-default" data-toggle="button" aria-pressed="false">Like</button>
+        <button class="btn alert-info upLike" type="button" class="btn btn-default" data-toggle="button" aria-pressed="false">Like</button>
 
         <span id="<%= locations[i]._id %>"><%= locations[i].likes %></span>
     </div>
@@ -21,7 +21,7 @@
 
     $('.upLike').on('click', function() {
         let setUrl = "http://localhost:3000/api/chapters/" + $(this).siblings('span')[0].id + "?key=" + "<%= masterKey.key %>";
-        
+
         $.ajax({
             method: "PUT",
             url: setUrl,
