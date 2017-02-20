@@ -6530,6 +6530,20 @@ button.close {
     display: none !important;
   }
 }
+nav {
+  background-image: url('../images/old_map.png');
+}
+nav .navbar-brand {
+  padding: 1vh;
+}
+nav .navbar-brand .logo {
+  height: 8vh;
+  width: auto;
+  margin: 0;
+}
+nav a.btn:hover {
+  background-color: #bbd8e7;
+}
 button a {
   color: inherit;
   text-decoration: none;
@@ -6543,6 +6557,7 @@ div#map {
 }
 img {
   max-height: 60vh;
+  margin: 2vh 0;
 }
 div.mapJumbotron {
   position: relative;
@@ -6564,16 +6579,6 @@ div.mapJumbotron div.collapsed {
   top: inherit;
   left: inherit;
   background-color: inherit;
-}
-nav {
-  background-image: url('../images/old_map.png');
-}
-nav .navbar-brand {
-  padding: 1vh;
-}
-nav .navbar-brand .logo {
-  height: 8vh;
-  width: auto;
 }
 div.thumbnail {
   background-color: white;
@@ -6623,4 +6628,7 @@ div.collapsed .chapterToggle {
 }
 .btn:hover {
   background-color: #bbd8e7;
+}
+.likes {
+  font-size: 1.5rem;
 }

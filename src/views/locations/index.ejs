@@ -6,11 +6,11 @@
             <p><%= locations[i].description %></p>
         </div>
 
-        <img src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
+        <img class="img-responsive" src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
 
         <button class="btn alert-info upLike" type="button" class="btn btn-default" data-toggle="button" aria-pressed="false">Like</button>
 
-        <span id="<%= locations[i]._id %>"><%= locations[i].likes %></span>
+        <span id="<%= locations[i]._id %>" class="likes"><%= locations[i].likes %></span>
     </div>
 <% } %>
 
