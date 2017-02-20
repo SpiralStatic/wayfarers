@@ -24,7 +24,13 @@
     $('.upLike').on('click', function() {
         let span = $(this).siblings('span')[0];
         let newLikes = $(span).html();
-        newLikes++;
+        $(this).toggleClass('down');
+        if ($(this).hasClass('down') === true) {
+            newLikes++
+        } else {
+            newLikes--
+        }
+
         let setUrl = "http://localhost:3000/api/chapters/" + span.id + "?key=" + "<%= masterKey.key %>";
 
         $.ajax({
