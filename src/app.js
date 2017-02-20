@@ -12,6 +12,9 @@ var User = require('./models/user');
 
 var app = express();
 
+// Use public resource folder
+app.use(express.static('../public'));
+
 // Connect to the database
 mongoose.connect('mongodb://localhost/wayfarers', function() {
     console.log("Database is now connected");
@@ -84,19 +87,16 @@ app.set('view engine', 'ejs');
 app.use(layouts);
 
 // Check for user login
-// app.use(function(req, res, next) {
-//     var urls = ["/sessions", "/sessions/new", "/users", "/users/new", "/", "/api", "api/locations"];
-//     if(urls.indexOf(req.url) === -1) {
-//         if (!req.user) return res.redirect('/sessions/new');
-//     }
-//     next();
-// });
+app.use(function(req, res, next) {
+    var urls = ["/sessions", "/sessions/new", "/users", "/users/new", "/"];
+    if(urls.indexOf(req.url) === -1 || (/\/api/g).test(req.url)) {
+        if (!req.user) return res.redirect('/sessions/new');
+    }
+    next();
+});
 
 // Add the router
 app.use(routes);
-
-// Use public resource folder
-app.use(express.static('../public'));
 
 // Start server
 app.listen(3000, function() {

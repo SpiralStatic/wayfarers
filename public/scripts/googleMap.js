@@ -1,4 +1,8 @@
 $(function() {
+    $('.grid').masonry({
+        itemSelector: '.grid-item'
+    });
+
     $.get('https://maps.googleapis.com/maps/api/js?key=AIzaSyCOuJieqxDGIPhqPY0fCa8vLf0Lbbj7BrY', function(data) {
         var array = $('#coords').attr('value').split(",");
         var coords = array.map(function(val) {
