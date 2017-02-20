@@ -21,9 +21,9 @@
     });
 </script>
 
-<div id="slick-carousel" data-slick='{"slidesToShow": <%= location.images.length %>, "slidesToScroll": <%= location.images.length %>}'>
+<div id="slick-carousel container" data-slick='{"slidesToShow": 1, "slidesToScroll": <%= location.images.length %>}'>
     <% location.images.map((image, i) => { %>
-        <div><img class="img-responsive" src="<%= image %>" alt="<%= location.name %> Image <%= i %>"</img></div>
+        <div><img class="img-responsive centered" src="<%= image %>" alt="<%= location.name %> Image <%= i %>"</img></div>
     <% }) %>
 </div>
 

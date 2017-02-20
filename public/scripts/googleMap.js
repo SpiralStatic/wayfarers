@@ -5,10 +5,10 @@ $(function() {
 
     $('#slick-carousel').slick({
         dots: true,
-        infinite: true,
-        speed: 300,
         centerMode: true,
-        variableWidth: true
+        speed: 300,
+        fade: true,
+        cssEase: 'linear'
     });
 
     $.get('https://maps.googleapis.com/maps/api/js?key=AIzaSyCOuJieqxDGIPhqPY0fCa8vLf0Lbbj7BrY', function(data) {
@@ -19,7 +19,6 @@ $(function() {
 
         function initMap() {
             var location = new google.maps.LatLng(coords[0], coords[1]);
-            console.log(location);
             var mapCanvas = document.getElementById('map');
             var mapOptions = {
                 center: location,
@@ -236,7 +235,6 @@ $(function() {
         }
         (function(cb) {
             eval(data);
-            console.log(google);
             return (function() {
                 return cb();
             })();
