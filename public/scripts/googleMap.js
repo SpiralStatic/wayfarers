@@ -3,6 +3,14 @@ $(function() {
         itemSelector: '.grid-item'
     });
 
+    $('#slick-carousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        centerMode: true,
+        variableWidth: true
+    });
+
     $.get('https://maps.googleapis.com/maps/api/js?key=AIzaSyCOuJieqxDGIPhqPY0fCa8vLf0Lbbj7BrY', function(data) {
         var array = $('#coords').attr('value').split(",");
         var coords = array.map(function(val) {

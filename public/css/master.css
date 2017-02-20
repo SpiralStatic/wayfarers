@@ -6632,3 +6632,6 @@ div.collapsed .chapterToggle {
 .likes {
   font-size: 1.5rem;
 }
+#slick-carousel {
+  margin: 5%;
+}
