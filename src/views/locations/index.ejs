@@ -1,18 +1,20 @@
-<% for(let i = 0; i < locations.length; i++) { %>
-    <div class="grid-item thumbnail col col-xs-12 col-sm-12 col-md-6 col-lg-4">
-        <div class="caption">
-            <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
-            <h5><%= locations[i].date.toDateString() %></h5>
-            <p><%= locations[i].description %></p>
+<div class="grid">
+    <% for(let i = 0; i < locations.length; i++) { %>
+        <div class="grid-item thumbnail col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="caption">
+                <h5><a href="<%= locations[i]._id %>"><%= locations[i].name %></a></h5>
+                <h5><%= locations[i].date.toDateString() %></h5>
+                <p><%= locations[i].description %></p>
+            </div>
+
+            <img class="img-responsive" src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
+
+            <button class="btn alert-info upLike" type="button" class="btn btn-default" data-toggle="button" aria-pressed="false"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+
+            <span id="<%= locations[i]._id %>" class="btn btn-default likes" disabled="disabled"><%= locations[i].likes %></span>
         </div>
-
-        <img class="img-responsive" src="<%= locations[i].images[0] %>" alt="<%= locations[i].name %> Cover Image"</img>
-
-        <button class="btn alert-info upLike" type="button" class="btn btn-default" data-toggle="button" aria-pressed="false"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
-
-        <span id="<%= locations[i]._id %>" class="btn btn-default likes" disabled="disabled"><%= locations[i].likes %></span>
-    </div>
-<% } %>
+    <% } %>
+</div>
 
 <script>
     // setInterval(function() {
