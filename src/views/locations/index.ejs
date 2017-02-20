@@ -15,12 +15,13 @@
 <% } %>
 
 <script>
-    setInterval(function() {
-        updateLikes();
-    }, (10 * 1000));
+    // setInterval(function() {
+    //     updateLikes();
+    // }, (10 * 1000));
 
     $('.upLike').on('click', function() {
-        let setUrl = "http://localhost:3000/api/chapters/" + $(this).siblings('span')[0].id + "?key=" + "<%= masterKey.key %>";
+        let id = $(this).siblings('span')[0].id;
+        let setUrl = "http://localhost:3000/api/chapters/" + id + "?key=" + "<%= masterKey.key %>";
 
         $.ajax({
             method: "PUT",
@@ -32,7 +33,7 @@
             }
         })
         .done(function() {
-            updateLikes();
+            //updateLikes();
         });
     });
 

@@ -66,6 +66,8 @@ function deleteLocation(req, res) {
 
 // UPDATE - UPDATE /:id
 function updateLocation(req, res) {
+    console.log(req);
+    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     // Update with new content
     Location.findByIdAndUpdate(
         req.params.id, {
@@ -84,6 +86,8 @@ function updateLocation(req, res) {
             if (err) res.status(500).json({
                 error: err.message
             });
+
+            console.log("UPDATE DONE");
             // Return updated location as JSON object
             res.status(204).json(location);
         }
