@@ -89,7 +89,8 @@ app.use(layouts);
 // Check for user login
 app.use(function(req, res, next) {
     var urls = ["/sessions", "/sessions/new", "/users", "/users/new", "/"];
-    if(urls.indexOf(req.url) === -1 || (/\/api/g).test(req.url)) {
+    if ((/\/api/g).test(req.url)) return next();
+    if(urls.indexOf(req.url) === -1) {
         if (!req.user) return res.redirect('/sessions/new');
     }
     next();

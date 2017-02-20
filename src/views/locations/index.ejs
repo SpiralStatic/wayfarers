@@ -17,34 +17,36 @@
 </div>
 
 <script>
-    // setInterval(function() {
-    //     updateLikes();
-    // }, (10 * 1000));
+    setInterval(function() {
+        updateLikes();
+    }, (30 * 1000));
 
     $('.upLike').on('click', function() {
-        let id = $(this).siblings('span')[0].id;
-        let setUrl = "http://localhost:3000/api/chapters/" + id + "?key=" + "<%= masterKey.key %>";
+        let span = $(this).siblings('span')[0];
+        let newLikes = $(span).html();
+        newLikes++;
+        let setUrl = "http://localhost:3000/api/chapters/" + span.id + "?key=" + "<%= masterKey.key %>";
 
         $.ajax({
             method: "PUT",
             url: setUrl,
             data: {
-                $inc: {
-                    likes: 1
-                }
+                likes: newLikes
             }
-        })
-        .done(function() {
-            //updateLikes();
+        }).catch(function(err) {
+            console.log(err);
+        }).done(function(data) {
+            updateLikes();
         });
     });
 
     function updateLikes() {
         $.get('http://localhost:3000/api/chapters', function(data) {
-            <% for(let i = 0; i < locations.length; i++) { %>
-                var location = "<%= locations[i]._id %>";
-                $('#' + location).text(data.likes);
-            <% } %>
+            console.log(data);
+            for (let i = 0; i < data.length; i++) { %>
+                var location = data[i]._id;
+                $('#' + location).text(data[i].likes);
+            }
         });
     }
 

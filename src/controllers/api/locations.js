@@ -6,7 +6,7 @@ var masterKey = require('../../master');
 function indexLocation(req, res) {
     // Get the model to load all the locations. wait for data in the callback
     Location.find({}, function(err, locations) {
-        if (err) res.status(500).json({
+        if (err) return res.status(500).json({
             error: err.message
         });
         // Return locations as JSON object
@@ -19,10 +19,10 @@ function showLocation(req, res) {
 
     Location.findById(req.params.id, function(err, location) {
         // check for errors or for no object found
-        if (!location) res.status(404).json({
+        if (!location) return res.status(404).json({
             error: "Chapter not found"
         });
-        if (err) res.status(500).json({
+        if (err) return res.status(500).json({
             error: err.message
         });
         // Return location as JSON object
@@ -35,15 +35,16 @@ function deleteLocation(req, res) {
     // Tell the data store to remove the location with the id in the request
     Location.findByIdAndRemove(req.params.id, function(err, location) {
         // Check user permissions
-        if(location.user !== req.query.key) {
-            res.status(401).json({
+        if (location.user !== req.query.key) {
+            return res.status(401).json({
                 error: "You do not have the correct API key to delete this content"
             });
         }
 
-        if (err) res.status(500).json({
+        if (err) return res.status(500).json({
             error: err.message
         });
+
         User.findByIdAndUpdate(req.query.key, {
                 $pull: {
                     locations: {
@@ -53,7 +54,7 @@ function deleteLocation(req, res) {
             },
             function(err, user) {
                 // Check for errors and return 500 if there was a problem
-                if (err) res.status(500).json({
+                if (err) return res.status(500).json({
                     error: err.message
                 });
                 // Return completion message
@@ -66,30 +67,30 @@ function deleteLocation(req, res) {
 
 // UPDATE - UPDATE /:id
 function updateLocation(req, res) {
-    console.log(req);
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
     // Update with new content
     Location.findByIdAndUpdate(
         req.params.id, {
             $set: req.body
         }, {
-            runValidators: true
+            runValidators: true,
+            new: true
         },
         function(err, location) {
             // Check user permissions
-            if(location.user !== req.query.key || req.query.key !== masterKey.key) {
-                res.status(401).json({
+            if (req.query.key !== masterKey.key && location.user !== req.query.key) {
+                return res.status(401).json({
                     error: "You do not have the correct API key to update this content"
                 });
             }
 
-            if (err) res.status(500).json({
+            if (err) return res.status(500).json({
                 error: err.message
             });
 
-            console.log("UPDATE DONE");
             // Return updated location as JSON object
-            res.status(204).json(location);
+            console.log(location.likes);
+            return res.status(200).json({ likes: location.likes});
         }
     );
 }
@@ -108,7 +109,7 @@ function createLocation(req, res) {
 
     }, function(err, location) {
         // Check for errors and return 500 if there was a problem
-        if (err) res.status(500).json({
+        if (err) return res.status(500).json({
             error: err.message
         });
 
@@ -119,7 +120,7 @@ function createLocation(req, res) {
             },
             function(err, user) {
                 // Check for errors and return 500 if there was a problem
-                if (err) res.status(500).json({
+                if (err) return res.status(500).json({
                     error: err.message
                 });
                 // Return newly created location as JSON object
