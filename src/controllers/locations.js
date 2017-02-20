@@ -98,8 +98,8 @@ function createLocation(req, res) {
 }
 
 function updateLocation(req, res) {
+    console.log(req.body);
     Location.findByIdAndUpdate(req.params.id, req.body, function(err, location) {
-
         // Check for errors and return 500 if there is a problem
         if (err) {
             req.flash('error', err.message);
