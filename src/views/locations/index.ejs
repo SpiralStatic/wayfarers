@@ -22,8 +22,8 @@
     }, (30 * 1000));
 
     $('.upLike').on('click', function() {
-        let span = $(this).siblings('span')[0];
-        let newLikes = $(span).html();
+        var span = $(this).siblings('span')[0];
+        var newLikes = $(span).html();
         $(this).toggleClass('down');
         if ($(this).hasClass('down') === true) {
             newLikes++
