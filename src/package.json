@@ -1,41 +1,42 @@
 {
-  "name": "wayfarers",
-  "version": "1.0.0",
-  "description": "Web App that allows users to post locations they have been to",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SpiralStatic/wayfarers.git"
-  },
-  "keywords": [
-    "app",
-    "travelling",
-    "wayfarers",
-    "locations"
-  ],
-  "author": "Chris Tsoi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SpiralStatic/wayfarers/issues"
-  },
-  "homepage": "https://github.com/SpiralStatic/wayfarers#readme",
-  "dependencies": {
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "ejs": "^2.5.5",
-    "express": "^4.14.1",
-    "express-ejs-layouts": "^2.2.0",
-    "express-session": "^1.15.1",
-    "mongoose": "^4.8.2"
-  },
-  "devDependencies": {
-    "bootstrap-less": "^3.3.8",
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0"
-  }
+    "name": "wayfarers",
+    "version": "1.0.0",
+    "description": "Web App that allows users to post locations they have been to",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "cd src"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SpiralStatic/wayfarers.git"
+    },
+    "keywords": [
+        "app",
+        "travelling",
+        "wayfarers",
+        "locations"
+    ],
+    "author": "Chris Tsoi",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SpiralStatic/wayfarers/issues"
+    },
+    "homepage": "https://github.com/SpiralStatic/wayfarers#readme",
+    "dependencies": {
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.5",
+        "express": "^4.14.1",
+        "express-ejs-layouts": "^2.2.0",
+        "express-session": "^1.15.1",
+        "mongoose": "^4.8.2"
+    },
+    "devDependencies": {
+        "bootstrap-less": "^3.3.8",
+        "chai": "^3.5.0",
+        "chai-http": "^3.0.0",
+        "gulp": "^3.9.1",
+        "gulp-less": "^3.3.0"
+    }
 }
