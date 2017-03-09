@@ -16,7 +16,7 @@ var app = express();
 app.use(express.static('public'));
 
 // Connect to the database
-mongoose.connect('mongodb://localhost/wayfarers', function() {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/wayfarers', function() {
     console.log("Database is now connected");
 });
 
@@ -100,7 +100,7 @@ app.use(function(req, res, next) {
 app.use(routes);
 
 // Start server
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log("Server Started. Listening on port 3000");
 });
 
