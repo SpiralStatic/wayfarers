@@ -13,7 +13,7 @@ var User = require('./models/user');
 var app = express();
 
 // Use public resource folder
-app.use(express.static('../public'));
+app.use(express.static('public'));
 
 // Connect to the database
 mongoose.connect('mongodb://localhost/wayfarers', function() {
